@@ -6,10 +6,13 @@
 
 {% block main %}
 
-    <form action="" method="post">
+    <form class="mt-5" action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-success"> Register</button>
+        <button type="submit" class="btn btn-success mt-3"> Register</button>
+        <p><a href="{% url 'password_reset' %}">Forgot Password?</a> | <a href="{% url 'password_change' %}">Change
+            Password</a></p>
+
     </form>
 
 {% endblock %}

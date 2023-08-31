@@ -27,11 +27,13 @@ INSTALLED_APPS = [
     # My Apps
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
+    'Books.apps.BooksConfig',
 
     #  third party
     'crispy_forms',
     'bootstrap4',
     'crispy_bootstrap4',
+
 ]
 
 MIDDLEWARE = [
@@ -119,3 +121,6 @@ LOGOUT_REDIRECT_URL = '/'
 
 # crispy
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Email config
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

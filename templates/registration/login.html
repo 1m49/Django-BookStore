@@ -1,13 +1,17 @@
 {% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+
 {% block title %} Login {% endblock %}
 
 
 {% block main %}
 
-    <form action="" method="post">
+    <form class="mt-5" action="" method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit"> Login</button>
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success mt-3"> Login </button>
+        <p><a href="{% url 'password_reset' %}">Forgot Password?</a> | <a href="{% url 'password_change' %}">Change Password</a></p>
     </form>
 
 {% endblock %}
