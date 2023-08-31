@@ -6,9 +6,11 @@
 {% block main %}
 
     {% for book in books %}
-        {{ book.title }}
+        <h1><a href="{{ book.get_absolute_url }}">  {{ book.title }}   </a></h1>
         <br>
     {% endfor %}
+
+    <a href="{% url 'book_create' %}">اضافه کردن کتاب جدید</a>
 
 
 {% endblock %}

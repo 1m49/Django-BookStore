@@ -10,8 +10,14 @@ class BookListView(generic.ListView):
     context_object_name = 'books'
 
 
+# detail of books
 class BookDetailView(generic.DetailView):
     model = Book
     template_name = 'books/book_detail.html'
 
 
+# add book to website (create book)
+class BookCreateView(generic.CreateView):
+    model = Book
+    fields = ['title', 'author', 'description', 'price']
+    template_name = 'books/book_create.html'
