@@ -8,7 +8,9 @@
     {{ book.author }}<br>
     {{ book.description }}<br>
     {{ book.price }}<br>
-    <a href="{% url 'book_list' %}">نمایش لیست همه کتاب ها</a>
+    <a href="{% url 'book_list' %}">نمایش لیست همه کتاب ها</a><br>
+    <a href="{% url 'book_update' book.id %}">ویرایش کتاب</a><br>
+    <a href="{% url 'book_delete' book.id %}">حذف کتاب</a>
 
 
 {% endblock %}
