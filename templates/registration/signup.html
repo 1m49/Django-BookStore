@@ -6,13 +6,20 @@
 
 {% block main %}
 
-    <form class="mt-5" action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-success mt-3"> Register</button>
-        <p><a href="{% url 'password_reset' %}">Forgot Password?</a> | <a href="{% url 'password_change' %}">Change
-            Password</a></p>
 
-    </form>
+    <div class="d-flex justify-content-center mt-5" dir="rtl">
+        <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-xs-6 bg-white m-3 m-sm-5 border rounded px-4 pt-4 pb-3 shadow">
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="line-with-middle-sep">
+                </div>
+
+                <button class="btn btn-primary mt-2 mb-3 w-100" type="submit" >ثبت نام کن</button>
+                <p><a class="text-decoration-none" href="{% url 'password_reset' %}">فراموشی رمز عبور</a> | <a
+                        class="text-decoration-none" href="{% url 'password_change' %}">تغییر پسورد</a></p>
+
+            </form>
+        </div>
 
 {% endblock %}
