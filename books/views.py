@@ -20,14 +20,14 @@ class BookDetailView(generic.DetailView):
 # add book to website (create book)
 class BookCreateView(generic.CreateView):
     model = Book
-    fields = ['title', 'author', 'description', 'price']
+    fields = ['title', 'cover', 'author', 'translator', 'publisher', 'description', 'price']
     template_name = 'books/book_create.html'
 
 
 # update books
 class BookUpdateView(generic.UpdateView):
     model = Book
-    fields = ['title', 'author', 'description', 'price']
+    fields = ['title', 'cover', 'author', 'translator', 'publisher', 'description', 'price', ]
     template_name = 'books/book_update.html'
     success_url = reverse_lazy('book_list')
 
