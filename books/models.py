@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 
 # Book Model
 class Book(models.Model):
+    user = models.ForeignKey(get_user_model() , on_delete=models.CASCADE, verbose_name='ایجاد کننده کتاب')
     title = models.CharField(max_length=150, verbose_name='عنوان کتاب')
     cover = models.ImageField(upload_to='book_cover/', blank=True, verbose_name='عکس')
     author = models.CharField(max_length=50, blank=True, verbose_name='نویسنده')
