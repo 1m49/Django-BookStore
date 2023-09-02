@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Book
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
+from .models import Book
+from .forms import CommentForm
 
 
 # show list of books
@@ -13,9 +17,33 @@ class BookListView(generic.ListView):
 
 
 # detail of books
-class BookDetailView(generic.DetailView):
-    model = Book
-    template_name = 'books/book_detail.html'
+# class BookDetailView(generic.DetailView):
+#     model = Book
+#     template_name = 'books/book_detail.html'
+
+def book_detail_view(request, pk):
+    # get book object
+    book = get_object_or_404(Book, pk=pk)
+    # get book comments
+    book_comments = book.comments.all()
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.user = request.user
+            new_comment.book = book
+            new_comment.save()
+            comment_form = CommentForm()
+            messages.success(request, '✅ نظر شما با موفقیت ثبت گردید ، از همراهی شما سپاسگزاریم ', 'success')
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'books/book_detail.html', {
+        'book': book,
+        'comment_form': comment_form,
+        'comments': book_comments,
+    })
 
 
 # add book to website (create book)
