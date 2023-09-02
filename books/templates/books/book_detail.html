@@ -40,8 +40,10 @@
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
                                 {{ book.price }} تومان
                             </h3><br>
-                            <a href="{% url 'book_update' book.id %}" class="btn btn-primary m-2">ویرایش</a>
-                            <a href="{% url 'book_delete' book.id %}" class="btn btn-danger m-2">حذف</a>
+                            {% if book.user == user %}
+                                <a href="{% url 'book_update' book.id %}" class="btn btn-primary m-2">ویرایش</a>
+                                <a href="{% url 'book_delete' book.id %}" class="btn btn-danger m-2">حذف</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -56,21 +58,21 @@
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
                         <h2 class="mb-5">نظرات:</h2>
                         {% if comments %}
-                        {% for comment in comments %}
-                            <div class="border-bottom mb-3">
-                                <h5 class="mb-3">{{ comment.user.username }}</h5>
-                                {% if comment.recommend %}
-                                <p class="alert alert-success col-3"> این کتاب رو پیشنهاد میکنم ✅</p>
+                            {% for comment in comments %}
+                                <div class="border-bottom mb-3">
+                                    <h5 class="mb-3">{{ comment.user.username }}</h5>
+                                    {% if comment.recommend %}
+                                        <p class="alert alert-success col-3"> این کتاب رو پیشنهاد میکنم ✅</p>
                                     {% else %}
-                                <p class="alert alert-danger col-3"> کتاب و پیشنهاد نمیکنم❌</p>
-                                {% endif %}
-                                <p>{{ comment.text }}</p>
-                            </div>
-                        {% endfor %}
+                                        <p class="alert alert-danger col-3"> کتاب و پیشنهاد نمیکنم❌</p>
+                                    {% endif %}
+                                    <p>{{ comment.text }}</p>
+                                </div>
+                            {% endfor %}
 
-                            {% else %}
+                        {% else %}
                             <p class="alert alert-info col-5"> فعلا هیچ نظری وجود ندارد ، شما اولین نفر باشید.</p>
-                    {% endif %}
+                        {% endif %}
 
 
                     </div>
