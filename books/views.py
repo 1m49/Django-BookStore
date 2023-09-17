@@ -16,6 +16,7 @@ class BookListView(generic.ListView):
     paginate_by = 4
     template_name = 'books/book_list.html'
     context_object_name = 'books'
+    ordering = ['datetime_created']
 
 
 # detail of books
@@ -53,6 +54,11 @@ class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
     fields = ['title', 'cover', 'author', 'translator', 'publisher', 'description', 'price']
     template_name = 'books/book_create.html'
+
+    def form_valid(self , form):
+        book = form.save(commit=False)
+        book.user = self.request.user
+        return super().form_valid(form)
 
 
 # update books

@@ -10,9 +10,10 @@ class Book(models.Model):
     cover = models.ImageField(upload_to='book_cover/', blank=True, verbose_name='عکس')
     author = models.CharField(max_length=50, blank=True, verbose_name='نویسنده')
     description = models.TextField(verbose_name='توضیحات کتاب')
-    price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='قیمت')
+    price = models.PositiveSmallIntegerField(verbose_name='قیمت')
     translator = models.CharField(max_length=50, blank=True, verbose_name='مترجم')
     publisher = models.CharField(max_length=50, blank=True, verbose_name='انتشارات')
+    datetime_created = models.DateTimeField(auto_now_add=True , null=True)
 
     def __str__(self):
         return self.title
